@@ -1,0 +1,53 @@
+PrimoBits[k_, t_] := Module[{random}, 
+     While[True, random = RandomInteger[{2^k, 2^(k + 1)}]; 
+        If[Fermat[random, t] == "Posible primo", Return[random]; ]; ]; ]
+ 
+Fermat[n_, k_] := Module[{i, random}, 
+     For[i = 0, i < k, i++, random = RandomInteger[{1, n}]; 
+        If[Mod[random^(n - 1), n] != 1, Return["Compuesto"]; ]; ]; 
+      Return["Posible primo"]]
+Fermat[n_, k_] := Module[{i, random}, 
+     For[i = 0, i < k, i++, random = RandomInteger[{1, n}]; 
+        If[Mod[random^(n - 1), n] != 1, Return["Compuesto"]; ]; ]; 
+      Return["Posible primo"]]
+IndiceCoincidencia[lista_] := Module[{i, n, long, listaSinRepetidos, f, 
+      suma}, listaSinRepetidos = DeleteDuplicates[lista]; suma = 0; 
+      n = Length[lista]; long = Length[listaSinRepetidos]; 
+      For[i = 0, i < long, i++, f = Count[lista, listaSinRepetidos[[i]]]/n; 
+        suma += f*(f - 1); ]; Return[suma/(n*(n - 1))]; ]
+InversoLanzadera[a_, b_] := Module[{final}, final = Inverso[a, b][[2]]; 
+      If[final == 1, Return[False], If[final < 1, Return[Mod[final, b]]; , 
+         Return[final]; ]; ]; ]
+ 
+Inverso[a_, b_] := Module[{d, x, y, d1, x1, y1}, 
+     If[b != 0, {d1, x1, y1} = Inverso[b, Mod[a, b]]; 
+        {d, x, y} = {d1, y1, x1 - Floor[a/b]*y1}; Return[{d, x, y}]; , 
+       Return[{a, 1, 0}]; ]; ]
+FrecuenciasGeneral[listaBigramas_, n_] := Module[{bigramas, i, result}, 
+     bigramas = Partition[listaBigramas, n, 1]; 
+      result = ({#1, 0} & ) /@ bigramas; result = DeleteDuplicates[result]; 
+      For[i = 1, i <= Length[result], i++, result[[i,2]] = 
+        Count[bigramas, result[[i,1]]]]; 
+      Return[Drop[Reverse[SortBy[result, #1[[2]] & ]], 
+        10 - Length[result]]]; ]
+FrecuenciasBig[listaBigramas_] := Module[{bigramas, i, result}, 
+     bigramas = Partition[listaBigramas, 2, 1]; 
+      result = ({#1, 0} & ) /@ bigramas; result = DeleteDuplicates[result]; 
+      For[i = 1, i <= Length[result], i++, result[[i,2]] = 
+        Count[bigramas, result[[i,1]]]]; 
+      Return[Drop[ReverseSortBy[result, #1[[2]] & ], 10 - Length[result]]]; ]
+FrecuenciasChar[listaSimbolos_] := Module[{i, dic, result, temp}, 
+     dic = Characters["ABCDEFGHIJKLMN\[CapitalNTilde]OPQRSTUVXYZ"]; 
+      result = ({#1, 0} & ) /@ dic; For[i = 1, i <= Length[dic], i++, 
+       result[[i,2]] = Count[listaSimbolos, dic[[i]]]; ]; 
+      Return[ReverseSortBy[result, #1[[2]] & ]]; ]
+IndiceCoincidencia[lista_] := Module[{i, n, long, listaSinRepetidos, f, 
+      suma}, listaSinRepetidos = DeleteDuplicates[lista]; suma = 0; 
+      n = Length[lista]; long = Length[listaSinRepetidos]; 
+      For[i = 0, i < long, i++, f = Count[lista, listaSinRepetidos[[i]]]/n; 
+        suma += f*(f - 1); ]; Return[N[suma/(n*(n - 1))]]; ]
+IndiceCoincidencia[lista_] := Module[{i, n, long, listaSinRepetidos, f, 
+      suma}, listaSinRepetidos = DeleteDuplicates[lista]; suma = 0; 
+      n = Length[lista]; long = Length[listaSinRepetidos]; 
+      For[i = 0, i < long, i++, f = Count[lista, listaSinRepetidos[[i]]]; 
+        suma += f*(f - 1); ]; Return[N[suma/(n*(n - 1))]]; ]
