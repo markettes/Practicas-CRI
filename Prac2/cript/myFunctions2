@@ -1,0 +1,49 @@
+LocSegmento[criptograma_, segmento_] := Module[{res, i, finalRes}, 
+     finalRes = {}; res = Flatten[StringPosition[StringJoin[criptograma], 
+         segmento]]; For[i = 1, i <= Length[res] - 1, i++, 
+       If[Mod[i, 2] == 1, AppendTo[finalRes, res[[i]]]; ]; ]; 
+      Return[finalRes]; ]
+ 
+i = 2
+Separar[criptograma_, k_] := Module[{i, j, res, aux}, 
+     aux = {}; res = {}; For[i = 1, i <= k, i++, 
+       j = i; While[j <= Length[criptograma], 
+         AppendTo[aux, criptograma[[j]]]; j = j + k; ]; AppendTo[res, aux]; 
+        aux = {}; ]; Return[res]; ]
+ 
+i = 2
+Juntar[array_] := Module[{res, i, j}, res = {}; 
+      For[i = 1, i <= Length[array[[1]]], i++, 
+       For[j = 1, j <= Length[array], j++, If[i <= Length[array[[j]]], 
+           AppendTo[res, array[[j,i]]]; ]; ]; ]; Return[StringJoin[res]]; ]
+ 
+i = 2
+LocSegmento[criptograma_, segmento_] := Module[{res, i, finalRes}, 
+     finalRes = {}; res = Flatten[StringPosition[StringJoin[criptograma], 
+         segmento]]; For[i = 1, i <= Length[res] - 1, i++, 
+       If[Mod[i, 2] == 1, AppendTo[finalRes, res[[i]]]; ]; ]; 
+      Return[finalRes]; ]
+LocSegmento[criptograma_, segmento_] := Module[{res, i, finalRes}, 
+     finalRes = {}; res = Flatten[StringPosition[StringJoin[criptograma], 
+         segmento]]; For[i = 1, i <= Length[res] - 1, i++, 
+       If[Mod[i, 2] == 1, AppendTo[finalRes, res[[i]]]; ]; ]; 
+      Return[finalRes]; ]
+LocSegmento[criptograma_, segmento_] := Module[{res, i, finalRes}, 
+     finalRes = {}; res = Flatten[StringPosition[StringJoin[criptograma], 
+         segmento]]; For[i = 1, i <= Length[res] - 1, i++, 
+       If[Mod[i, 2] == 1, AppendTo[finalRes, res[[i]]]; ]; ]; 
+      Return[finalRes]; ]
+LocSegmento[criptograma_, segmento_] := Module[{res, i, finalRes}, 
+     finalRes = {}; res = Flatten[StringPosition[StringJoin[criptograma], 
+         segmento]]; For[i = 1, i <= Length[res] - 1, i++, 
+       If[Mod[i, 2] == 1, AppendTo[finalRes, res[[i]]]; ]; ]; 
+      Return[finalRes]; ]
+Separar[criptograma_, k_] := Module[{i, j, res, aux}, 
+     aux = {}; res = {}; For[i = 1, i <= k, i++, 
+       j = i; While[j <= Length[criptograma], 
+         AppendTo[aux, criptograma[[j]]]; j = j + k; ]; AppendTo[res, aux]; 
+        aux = {}; ]; Return[res]; ]
+Juntar[array_] := Module[{res, i, j}, res = {}; 
+      For[i = 1, i <= Length[array[[1]]], i++, 
+       For[j = 1, j <= Length[array], j++, If[i <= Length[array[[j]]], 
+           AppendTo[res, array[[j,i]]]; ]; ]; ]; Return[StringJoin[res]]; ]
